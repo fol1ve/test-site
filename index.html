@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Parée — магазин женской одежды в Братске. Ул. Кирова, 27.">
+  <title>Parée — магазин одежды в Братске</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header" id="top">
+    <div class="container header-inner">
+      <a class="logo" href="#top" aria-label="Parée — на главную">Parée</a>
+
+      <nav class="nav" id="mainNav">
+        <a href="#catalog">Коллекция</a>
+        <a href="#about">О нас</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <a class="header-address" href="#contacts">Братск · Кирова, 27</a>
+      <button class="menu-button" id="menuButton" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Женская одежда · Братск</p>
+          <h1>Одежда,<br><em>в которой</em><br>хочется быть собой.</h1>
+          <p class="hero-text">Parée — пространство с одеждой на каждый день, для особенных случаев и просто для хорошего настроения.</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#catalog">Смотреть коллекцию</a>
+            <a class="text-link" href="#contacts">Как нас найти <span>↗</span></a>
+          </div>
+        </div>
+
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1100&q=85" alt="Одежда в магазине" loading="eager">
+          <div class="hero-note">
+            <span>01</span>
+            <p>Новая коллекция<br>уже в магазине</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="container intro-grid">
+        <p class="section-label">Parée / 2026</p>
+        <div>
+          <h2>Вещи, которые<br><em>остаются с вами.</em></h2>
+          <p class="intro-text">Мы собираем гардероб так, чтобы любимые вещи легко сочетались между собой. Базовые модели, выразительные детали и то самое ощущение «это точно моё».</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog section" id="catalog">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-label">Коллекция</p>
+            <h2>Выберите своё</h2>
+          </div>
+          <p class="section-muted">Часть ассортимента магазина</p>
+        </div>
+
+        <div class="filters" role="tablist" aria-label="Категории товаров">
+          <button class="filter active" data-filter="all">Всё</button>
+          <button class="filter" data-filter="dresses">Платья</button>
+          <button class="filter" data-filter="tops">Верх</button>
+          <button class="filter" data-filter="bottoms">Низ</button>
+          <button class="filter" data-filter="accessories">Аксессуары</button>
+        </div>
+
+        <div class="products" id="products">
+          <article class="product-card" data-category="dresses">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=85" alt="Платье" loading="lazy">
+              <span class="product-tag">Новинка</span>
+            </div>
+            <div class="product-info"><div><h3>Платье миди</h3><p>Лаконичный силуэт</p></div><strong>по запросу</strong></div>
+          </article>
+
+          <article class="product-card" data-category="tops">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85" alt="Рубашка" loading="lazy">
+            </div>
+            <div class="product-info"><div><h3>Рубашка</h3><p>Мягкая посадка</p></div><strong>по запросу</strong></div>
+          </article>
+
+          <article class="product-card" data-category="bottoms">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=85" alt="Брюки" loading="lazy">
+            </div>
+            <div class="product-info"><div><h3>Брюки</h3><p>На каждый день</p></div><strong>по запросу</strong></div>
+          </article>
+
+          <article class="product-card" data-category="tops">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1564257577054-0dcb0c7b1f1d?auto=format&fit=crop&w=800&q=85" alt="Жакет" loading="lazy">
+              <span class="product-tag">Хит</span>
+            </div>
+            <div class="product-info"><div><h3>Жакет</h3><p>Собирает образ</p></div><strong>по запросу</strong></div>
+          </article>
+
+          <article class="product-card" data-category="dresses">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=85" alt="Платье с длинным рукавом" loading="lazy">
+            </div>
+            <div class="product-info"><div><h3>Платье</h3><p>Для особого дня</p></div><strong>по запросу</strong></div>
+          </article>
+
+          <article class="product-card" data-category="accessories">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=85" alt="Сумка" loading="lazy">
+            </div>
+            <div class="product-info"><div><h3>Сумка</h3><p>Завершает образ</p></div><strong>по запросу</strong></div>
+          </article>
+        </div>
+
+        <p class="catalog-note">Ассортимент и наличие меняются. Актуальные модели можно уточнить в магазине.</p>
+      </div>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="container about-grid">
+        <div class="about-photo">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1100&q=85" alt="Интерьер магазина одежды" loading="lazy">
+        </div>
+        <div class="about-copy">
+          <p class="section-label">О Parée</p>
+          <h2>Место, где<br><em>легко выбрать своё.</em></h2>
+          <p>Parée — магазин женской одежды в Братске. Здесь можно спокойно посмотреть коллекцию, примерить вещи и собрать образ без спешки.</p>
+          <p>Мы за одежду, которая подходит именно вам: по настроению, характеру и ритму жизни.</p>
+          <a class="text-link" href="#contacts">Зайти в магазин <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote">
+      <div class="container">
+        <p>«Моё желание»</p>
+        <span>Parée</span>
+      </div>
+    </section>
+
+    <section class="visit section" id="contacts">
+      <div class="container visit-grid">
+        <div>
+          <p class="section-label">Ждём вас</p>
+          <h2>Загляните<br><em>в Parée.</em></h2>
+        </div>
+        <div class="visit-details">
+          <div class="detail">
+            <span>Адрес</span>
+            <strong>Братск, ул. Кирова, 27</strong>
+          </div>
+          <div class="detail">
+            <span>Время работы</span>
+            <strong>Ежедневно · 10:00–20:00</strong>
+          </div>
+          <div class="detail">
+            <span>Телефон</span>
+            <a href="tel:+79140014003">+7 (914) 001-40-03</a>
+          </div>
+          <a class="button button-dark" href="https://yandex.ru/maps/?text=Братск%20Кирова%2027" target="_blank" rel="noopener">Открыть на карте ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="logo" href="#top">Parée</a>
+      <p>Братск · Кирова, 27</p>
+      <p>© <span id="year"></span> Parée</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

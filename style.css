@@ -13,7 +13,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
   overflow-anchor: none;
 }
 
@@ -760,16 +759,15 @@ h2 {
   color: var(--white);
 }
 
-/* Точная позиция при переходе по якорям */
+/* Точная позиция при переходе по якорям: учитываем фиксированную шапку. */
+#top { scroll-margin-top: 0; }
 #new-collection,
 #catalog,
 #fitting,
 #about,
 #contacts {
-  scroll-margin-top: 90px;
+  scroll-margin-top: 92px;
 }
-
-#new-collection, #catalog, #about, #contacts, #fitting { scroll-margin-top: 92px; }
 
 @media (max-width: 1100px) {
   .new-products {
@@ -820,7 +818,6 @@ h2 {
 
 @media (max-width: 700px) {
   html {
-    scroll-padding-top: 72px;
   }
 
   body {

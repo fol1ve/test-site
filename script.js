@@ -5,10 +5,6 @@
 // Навигация, меню, фильтры, карточки товаров и модальное окно
 // =========================================================
 
-if ("scrollRestoration" in history) {
-  history.scrollRestoration = "manual";
-}
-
 const menuButton = document.getElementById("menuButton");
 const mainNav = document.getElementById("mainNav");
 const modal = document.getElementById("productModal");

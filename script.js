@@ -1,3 +1,9 @@
+
+// Всегда открываем сайт с верхнего экрана, если пользователь не перешёл по якорной ссылке.
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+if (!window.location.hash) {
+  window.scrollTo(0, 0);
+}
 const menuButton = document.getElementById("menuButton");
 const mainNav = document.getElementById("mainNav");
 const modal = document.getElementById("productModal");

@@ -1,5 +1,13 @@
 const menuButton = document.getElementById("menuButton");
 const mainNav = document.getElementById("mainNav");
+const modal = document.getElementById("productModal");
+const modalImage = document.getElementById("modalImage");
+const modalTitle = document.getElementById("modalTitle");
+const modalCategory = document.getElementById("modalCategory");
+const modalDescription = document.getElementById("modalDescription");
+const modalFacts = document.getElementById("modalFacts");
+const products = document.querySelectorAll(".product-card");
+const filters = document.querySelectorAll(".filter");
 
 menuButton.addEventListener("click", () => {
   const opened = mainNav.classList.toggle("open");
@@ -17,16 +25,12 @@ mainNav.querySelectorAll("a").forEach(link => {
   });
 });
 
-const filters = document.querySelectorAll(".filter");
-const products = document.querySelectorAll(".product-card");
-
 filters.forEach(filter => {
   filter.addEventListener("click", () => {
-    filters.forEach(item => item.classList.remove("active"));
-    filter.classList.add("active");
-    filter.setAttribute("aria-pressed", "true");
     filters.forEach(item => {
-      if (item !== filter) item.setAttribute("aria-pressed", "false");
+      const active = item === filter;
+      item.classList.toggle("active", active);
+      item.setAttribute("aria-pressed", String(active));
     });
 
     const category = filter.dataset.filter;
@@ -38,31 +42,70 @@ filters.forEach(filter => {
 });
 
 const productData = {
-  1: { title: "Платье миди", category: "Платья", description: "Лаконичная модель для спокойных повседневных образов и особых случаев.", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1000&q=85", alt: "Платье миди" },
-  2: { title: "Рубашка", category: "Верх", description: "Мягкая рубашка, которую легко сочетать с брюками, джинсами и юбками.", image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85", alt: "Рубашка" },
-  3: { title: "Брюки", category: "Низ", description: "Универсальная модель на каждый день — для работы, прогулок и встреч.", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1000&q=85", alt: "Брюки" },
-  4: { title: "Жакет", category: "Верх", description: "Аккуратный жакет, который собирает образ и подходит для разных сочетаний.", image: "https://images.unsplash.com/photo-1567973336934-8e337446fa9f?auto=format&fit=crop&fm=jpg&q=85&w=1200", alt: "Жакет" },
-  5: { title: "Платье", category: "Платья", description: "Выразительная модель для особого дня и случаев, когда хочется нарядиться.", image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=1000&q=85", alt: "Платье с длинным рукавом" },
-  6: { title: "Сумка", category: "Аксессуары", description: "Лаконичный аксессуар, который завершает образ и подходит на каждый день.", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1000&q=85", alt: "Сумка" }
+  1: {
+    title: "Платье миди",
+    category: "Платья",
+    description: "Лаконичный вариант для тех случаев, когда хочется собрать образ одной вещью. В карточке показано визуальное направление модели; актуальную модель и посадку можно посмотреть в магазине.",
+    image: "https://images.unsplash.com/photo-1565829237161-a1e608b1afdc?auto=format&fit=crop&w=1400&q=85",
+    alt: "Платье миди",
+    facts: [["Категория", "Платья"], ["Стиль", "Повседневный / нарядный"], ["Наличие", "Уточнить в магазине"]]
+  },
+  2: {
+    title: "Рубашка",
+    category: "Верх",
+    description: "Базовая вещь, которую удобно рассматривать как основу образа. На сайте — пример визуальной подачи, а не точная карточка складского остатка.",
+    image: "https://images.unsplash.com/photo-1573651235591-221193be5229?auto=format&fit=crop&w=1400&q=85",
+    alt: "Белая рубашка",
+    facts: [["Категория", "Верх"], ["Стиль", "База / everyday"], ["Наличие", "Уточнить в магазине"]]
+  },
+  3: {
+    title: "Брюки",
+    category: "Низ",
+    description: "Универсальная часть гардероба, которую можно сочетать с рубашкой, жакетом или более расслабленным верхом.",
+    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1400&q=85",
+    alt: "Женские брюки",
+    facts: [["Категория", "Низ"], ["Стиль", "Повседневный"], ["Наличие", "Уточнить в магазине"]]
+  },
+  4: {
+    title: "Жакет",
+    category: "Верх",
+    description: "Акцентная верхняя вещь для более собранного образа. Нажмите на карточку, чтобы посмотреть фотографию крупнее и перейти к контактам магазина.",
+    image: "https://images.unsplash.com/photo-1771072426342-8fa359598a6e?auto=format&fit=crop&w=1400&q=85",
+    alt: "Жакет и женский образ",
+    facts: [["Категория", "Верх"], ["Стиль", "Собранный / editorial"], ["Наличие", "Уточнить в магазине"]]
+  },
+  5: {
+    title: "Вечернее платье",
+    category: "Платья",
+    description: "Более выразительный вариант для события или вечера. Фотография помогает передать настроение, а точные модели и размеры лучше уточнять в магазине.",
+    image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=1400&q=85",
+    alt: "Платье для особого случая",
+    facts: [["Категория", "Платья"], ["Стиль", "Вечерний"], ["Наличие", "Уточнить в магазине"]]
+  },
+  6: {
+    title: "Сумка",
+    category: "Аксессуары",
+    description: "Аксессуар, который помогает завершить образ. В карточке используется пример fashion-фотографии, а актуальный ассортимент можно узнать в магазине.",
+    image: "https://images.unsplash.com/photo-1560891958-68bb1fe7fb78?auto=format&fit=crop&w=1400&q=85",
+    alt: "Женская сумка",
+    facts: [["Категория", "Аксессуары"], ["Назначение", "Завершение образа"], ["Наличие", "Уточнить в магазине"]]
+  }
 };
-
-const modal = document.getElementById("productModal");
-const modalImage = document.getElementById("modalImage");
-const modalTitle = document.getElementById("modalTitle");
-const modalCategory = document.getElementById("modalCategory");
-const modalDescription = document.getElementById("modalDescription");
 
 function openProduct(productId) {
   const product = productData[productId];
   if (!product) return;
+
   modalImage.src = product.image;
   modalImage.alt = product.alt;
   modalTitle.textContent = product.title;
   modalCategory.textContent = product.category;
   modalDescription.textContent = product.description;
+  modalFacts.innerHTML = product.facts.map(([label, value]) => `<div class="modal-fact"><span>${label}</span><strong>${value}</strong></div>`).join("");
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
+  modal.querySelector(".modal-close").focus();
 }
 
 function closeProduct() {
@@ -76,6 +119,7 @@ products.forEach(card => {
     if (event.target.closest("a")) return;
     openProduct(card.dataset.product);
   });
+
   card.addEventListener("keydown", event => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
@@ -86,16 +130,21 @@ products.forEach(card => {
 
 modal.querySelectorAll("[data-close-modal]").forEach(element => {
   element.addEventListener("click", event => {
-    if (element.tagName === "A") {
-      closeProduct();
-      return;
-    }
-    if (event.target === element || element.classList.contains("modal-close")) closeProduct();
+    if (element.tagName === "A") closeProduct();
+    else if (event.target === element || element.classList.contains("modal-close")) closeProduct();
   });
 });
 
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && modal.classList.contains("open")) closeProduct();
+  if (event.key === "Escape") {
+    if (modal.classList.contains("open")) closeProduct();
+    if (mainNav.classList.contains("open")) {
+      mainNav.classList.remove("open");
+      document.body.classList.remove("menu-open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Открыть меню");
+    }
+  }
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();

@@ -3,26 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Parée — магазин женской одежды в Братске. Ул. Кирова, 27.">
+  <meta name="description" content="Parée — магазин женской одежды в Братске. Коллекция, карточки товаров и контакты магазина.">
   <title>Parée — магазин одежды в Братске</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="header" id="top">
     <div class="container header-inner">
       <a class="logo" href="#top" aria-label="Parée — на главную">Parée</a>
-
-      <nav class="nav" id="mainNav">
+      <nav class="nav" id="mainNav" aria-label="Основная навигация">
         <a href="#catalog">Коллекция</a>
         <a href="#about">О нас</a>
         <a href="#contacts">Контакты</a>
       </nav>
-
       <a class="header-address" href="#contacts">Братск · Кирова, 27</a>
-      <button class="menu-button" id="menuButton" aria-label="Открыть меню" aria-expanded="false">
+      <button class="menu-button" id="menuButton" type="button" aria-label="Открыть меню" aria-expanded="false">
         <span></span><span></span>
       </button>
     </div>
@@ -34,19 +32,15 @@
         <div class="hero-copy">
           <p class="eyebrow">Женская одежда · Братск</p>
           <h1>Одежда,<br><em>в которой</em><br>хочется быть собой.</h1>
-          <p class="hero-text">Parée — пространство с одеждой на каждый день, для особенных случаев и просто для хорошего настроения.</p>
+          <p class="hero-text">Parée — магазин, где можно спокойно посмотреть коллекцию, найти вещь под свой образ и прийти за ней в магазин.</p>
           <div class="hero-actions">
             <a class="button button-dark" href="#catalog">Смотреть коллекцию</a>
             <a class="text-link" href="#contacts">Как нас найти <span>↗</span></a>
           </div>
         </div>
-
         <div class="hero-photo">
-          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1100&q=85" alt="Одежда в магазине" loading="eager">
-          <div class="hero-note">
-            <span>01</span>
-            <p>Новая коллекция<br>уже в магазине</p>
-          </div>
+          <img src="https://images.unsplash.com/photo-1612796016950-35a5fc6275eb?auto=format&fit=crop&w=1200&q=85" alt="Женский образ с жакетом и сумкой" loading="eager">
+          <div class="hero-note"><span>01</span><p>Коллекция<br>Parée</p></div>
         </div>
       </div>
     </section>
@@ -55,8 +49,8 @@
       <div class="container intro-grid">
         <p class="section-label">Parée / 2026</p>
         <div>
-          <h2>Вещи, которые<br><em>остаются с вами.</em></h2>
-          <p class="intro-text">Мы собираем гардероб так, чтобы любимые вещи легко сочетались между собой. Базовые модели, выразительные детали и то самое ощущение «это точно моё».</p>
+          <h2>Вещи, которые<br><em>легко представить на себе.</em></h2>
+          <p class="intro-text">На сайте — часть ассортимента для знакомства с эстетикой магазина. Нажмите на любую карточку, чтобы открыть подробности и посмотреть вещь крупнее.</p>
         </div>
       </div>
     </section>
@@ -68,7 +62,7 @@
             <p class="section-label">Коллекция</p>
             <h2>Выберите своё</h2>
           </div>
-          <p class="section-muted">Часть ассортимента магазина</p>
+          <p class="section-muted">Карточки открываются отдельно<br>с подробным описанием</p>
         </div>
 
         <div class="filters" aria-label="Категории товаров">
@@ -80,119 +74,134 @@
         </div>
 
         <div class="products" id="products">
-          <article class="product-card" data-category="dresses" data-product="1" tabindex="0" role="button" aria-label="Открыть: Платье миди">
+          <article class="product-card" data-category="dresses" data-product="1" tabindex="0" role="button" aria-label="Открыть карточку: Платье миди">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=85" alt="Платье" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1565829237161-a1e608b1afdc?auto=format&fit=crop&w=1200&q=85" alt="Платье миди" loading="lazy">
               <span class="product-tag">Новинка</span>
             </div>
-            <div class="product-info"><div><h3>Платье миди</h3><p>Лаконичный силуэт</p></div><strong>по запросу</strong></div>
-          </article>
-
-          <article class="product-card" data-category="tops" data-product="2" tabindex="0" role="button" aria-label="Открыть: Рубашка">
-            <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85" alt="Рубашка" loading="lazy">
+            <div class="product-info">
+              <div><p class="product-category">Платья</p><h3>Платье миди</h3><p>Спокойный силуэт с акцентом на посадку.</p></div>
+              <span class="product-more">Подробнее <b>↗</b></span>
             </div>
-            <div class="product-info"><div><h3>Рубашка</h3><p>Мягкая посадка</p></div><strong>по запросу</strong></div>
           </article>
 
-          <article class="product-card" data-category="bottoms" data-product="3" tabindex="0" role="button" aria-label="Открыть: Брюки">
+          <article class="product-card" data-category="tops" data-product="2" tabindex="0" role="button" aria-label="Открыть карточку: Рубашка">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=85" alt="Брюки" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1573651235591-221193be5229?auto=format&fit=crop&w=1200&q=85" alt="Белая рубашка" loading="lazy">
             </div>
-            <div class="product-info"><div><h3>Брюки</h3><p>На каждый день</p></div><strong>по запросу</strong></div>
+            <div class="product-info">
+              <div><p class="product-category">Верх</p><h3>Рубашка</h3><p>Базовая вещь, которую легко вписать в гардероб.</p></div>
+              <span class="product-more">Подробнее <b>↗</b></span>
+            </div>
           </article>
 
-          <article class="product-card" data-category="tops" data-product="4" tabindex="0" role="button" aria-label="Открыть: Жакет">
+          <article class="product-card" data-category="bottoms" data-product="3" tabindex="0" role="button" aria-label="Открыть карточку: Брюки">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1567973336934-8e337446fa9f?auto=format&fit=crop&fm=jpg&q=85&w=1200" alt="Жакет" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1200&q=85" alt="Женские брюки" loading="lazy">
+            </div>
+            <div class="product-info">
+              <div><p class="product-category">Низ</p><h3>Брюки</h3><p>Универсальная основа для повседневных образов.</p></div>
+              <span class="product-more">Подробнее <b>↗</b></span>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="tops" data-product="4" tabindex="0" role="button" aria-label="Открыть карточку: Жакет">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1771072426342-8fa359598a6e?auto=format&fit=crop&w=1200&q=85" alt="Жакет и женский образ" loading="lazy">
               <span class="product-tag">Хит</span>
             </div>
-            <div class="product-info"><div><h3>Жакет</h3><p>Собирает образ</p></div><strong>по запросу</strong></div>
+            <div class="product-info">
+              <div><p class="product-category">Верх</p><h3>Жакет</h3><p>Структурная вещь для собранного образа.</p></div>
+              <span class="product-more">Подробнее <b>↗</b></span>
+            </div>
           </article>
 
-          <article class="product-card" data-category="dresses" data-product="5" tabindex="0" role="button" aria-label="Открыть: Платье">
+          <article class="product-card" data-category="dresses" data-product="5" tabindex="0" role="button" aria-label="Открыть карточку: Вечернее платье">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=85" alt="Платье с длинным рукавом" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=1200&q=85" alt="Платье для особого случая" loading="lazy">
             </div>
-            <div class="product-info"><div><h3>Платье</h3><p>Для особого дня</p></div><strong>по запросу</strong></div>
+            <div class="product-info">
+              <div><p class="product-category">Платья</p><h3>Вечернее платье</h3><p>Выразительный вариант для особого выхода.</p></div>
+              <span class="product-more">Подробнее <b>↗</b></span>
+            </div>
           </article>
 
-          <article class="product-card" data-category="accessories" data-product="6" tabindex="0" role="button" aria-label="Открыть: Сумка">
+          <article class="product-card" data-category="accessories" data-product="6" tabindex="0" role="button" aria-label="Открыть карточку: Сумка">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=85" alt="Сумка" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1560891958-68bb1fe7fb78?auto=format&fit=crop&w=1200&q=85" alt="Женская сумка" loading="lazy">
             </div>
-            <div class="product-info"><div><h3>Сумка</h3><p>Завершает образ</p></div><strong>по запросу</strong></div>
+            <div class="product-info">
+              <div><p class="product-category">Аксессуары</p><h3>Сумка</h3><p>Деталь, которая завершает образ.</p></div>
+              <span class="product-more">Подробнее <b>↗</b></span>
+            </div>
           </article>
         </div>
 
-        <p class="catalog-note">Ассортимент и наличие меняются. Актуальные модели можно уточнить в магазине.</p>
+        <p class="catalog-note">Фотографии на сайте используются как визуальные примеры. Актуальный ассортимент, размеры, цены и наличие уточняйте в магазине.</p>
+      </div>
+    </section>
+
+    <section class="editorial section">
+      <div class="container editorial-grid">
+        <div class="editorial-copy">
+          <p class="section-label">Как выбрать</p>
+          <h2>Не знаете,<br><em>с чего начать?</em></h2>
+          <p>Откройте несколько карточек и сравните настроение вещей. Если понравился образ — приходите в магазин, чтобы увидеть актуальные модели и примерить их.</p>
+          <a class="text-link" href="#contacts">Адрес и контакты <span>↗</span></a>
+        </div>
+        <div class="editorial-photo">
+          <img src="https://images.unsplash.com/photo-1622445275992-e7efb32d2257?auto=format&fit=crop&w=1200&q=85" alt="Женский повседневный образ" loading="lazy">
+        </div>
       </div>
     </section>
 
     <section class="about section" id="about">
       <div class="container about-grid">
         <div class="about-photo">
-          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1100&q=85" alt="Интерьер магазина одежды" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85" alt="Интерьер магазина одежды" loading="lazy">
         </div>
         <div class="about-copy">
           <p class="section-label">О Parée</p>
           <h2>Место, где<br><em>легко выбрать своё.</em></h2>
           <p>Parée — магазин женской одежды в Братске. Здесь можно спокойно посмотреть коллекцию, примерить вещи и собрать образ без спешки.</p>
-          <p>Мы за одежду, которая подходит именно вам: по настроению, характеру и ритму жизни.</p>
+          <p>Сайт помогает заранее познакомиться с направлением магазина. Точные модели и наличие лучше уточнять непосредственно в магазине.</p>
           <a class="text-link" href="#contacts">Зайти в магазин <span>↗</span></a>
         </div>
       </div>
     </section>
 
     <section class="quote">
-      <div class="container">
-        <p>«Моё желание»</p>
-        <span>Parée</span>
-      </div>
+      <div class="container"><p>«Моё желание»</p><span>Parée</span></div>
     </section>
 
     <section class="visit section" id="contacts">
       <div class="container visit-grid">
-        <div>
-          <p class="section-label">Ждём вас</p>
-          <h2>Загляните<br><em>в Parée.</em></h2>
-        </div>
+        <div><p class="section-label">Ждём вас</p><h2>Загляните<br><em>в Parée.</em></h2></div>
         <div class="visit-details">
-          <div class="detail">
-            <span>Адрес</span>
-            <strong>Братск, ул. Кирова, 27</strong>
-          </div>
-          <div class="detail">
-            <span>Время работы</span>
-            <strong>Ежедневно · 10:00–20:00</strong>
-          </div>
-          <div class="detail">
-            <span>Телефон</span>
-            <a href="tel:+79140014003">+7 (914) 001-40-03</a>
-          </div>
+          <div class="detail"><span>Адрес</span><strong>Братск, ул. Кирова, 27</strong></div>
+          <div class="detail"><span>Время работы</span><strong>Ежедневно · 10:00–20:00</strong></div>
+          <div class="detail"><span>Телефон</span><a href="tel:+79140014003">+7 (914) 001-40-03</a></div>
           <a class="button button-dark" href="https://yandex.ru/maps/?text=Братск%20Кирова%2027" target="_blank" rel="noopener noreferrer">Открыть на карте ↗</a>
         </div>
       </div>
     </section>
   </main>
-    <div class="product-modal" id="productModal" aria-hidden="true">
-      <div class="product-modal-backdrop" data-close-modal></div>
-      <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <button class="modal-close" type="button" data-close-modal aria-label="Закрыть окно">×</button>
-        <div class="modal-image"><img id="modalImage" src="" alt=""></div>
-        <div class="modal-content">
-          <p class="section-label" id="modalCategory">Коллекция</p>
-          <h2 id="modalTitle">Товар</h2>
-          <p class="modal-description" id="modalDescription"></p>
-          <div class="modal-meta">
-            <span>Наличие и цена</span>
-            <strong>уточняйте в магазине</strong>
-          </div>
-          <a class="button button-dark" href="#contacts" data-close-modal>Уточнить в магазине ↗</a>
-        </div>
+
+  <div class="product-modal" id="productModal" aria-hidden="true">
+    <div class="product-modal-backdrop" data-close-modal></div>
+    <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" data-close-modal aria-label="Закрыть карточку">×</button>
+      <div class="modal-image"><img id="modalImage" src="" alt="Изображение товара"></div>
+      <div class="modal-content">
+        <p class="section-label" id="modalCategory">Коллекция</p>
+        <h2 id="modalTitle">Товар</h2>
+        <p class="modal-description" id="modalDescription"></p>
+        <div class="modal-facts" id="modalFacts"></div>
+        <div class="modal-note">Цена, размеры и наличие зависят от актуального ассортимента магазина.</div>
+        <a class="button button-dark" href="#contacts" data-close-modal>Уточнить в магазине ↗</a>
       </div>
     </div>
-
+  </div>
 
   <footer class="footer">
     <div class="container footer-inner">

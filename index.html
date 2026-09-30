@@ -71,16 +71,16 @@
           <p class="section-muted">Часть ассортимента магазина</p>
         </div>
 
-        <div class="filters" role="tablist" aria-label="Категории товаров">
-          <button class="filter active" data-filter="all">Всё</button>
-          <button class="filter" data-filter="dresses">Платья</button>
-          <button class="filter" data-filter="tops">Верх</button>
-          <button class="filter" data-filter="bottoms">Низ</button>
-          <button class="filter" data-filter="accessories">Аксессуары</button>
+        <div class="filters" aria-label="Категории товаров">
+          <button type="button" class="filter active" data-filter="all" aria-pressed="true">Всё</button>
+          <button type="button" class="filter" data-filter="dresses" aria-pressed="false">Платья</button>
+          <button type="button" class="filter" data-filter="tops" aria-pressed="false">Верх</button>
+          <button type="button" class="filter" data-filter="bottoms" aria-pressed="false">Низ</button>
+          <button type="button" class="filter" data-filter="accessories" aria-pressed="false">Аксессуары</button>
         </div>
 
         <div class="products" id="products">
-          <article class="product-card" data-category="dresses">
+          <article class="product-card" data-category="dresses" data-product="1" tabindex="0" role="button" aria-label="Открыть: Платье миди">
             <div class="product-image">
               <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=85" alt="Платье" loading="lazy">
               <span class="product-tag">Новинка</span>
@@ -88,36 +88,36 @@
             <div class="product-info"><div><h3>Платье миди</h3><p>Лаконичный силуэт</p></div><strong>по запросу</strong></div>
           </article>
 
-          <article class="product-card" data-category="tops">
+          <article class="product-card" data-category="tops" data-product="2" tabindex="0" role="button" aria-label="Открыть: Рубашка">
             <div class="product-image">
               <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85" alt="Рубашка" loading="lazy">
             </div>
             <div class="product-info"><div><h3>Рубашка</h3><p>Мягкая посадка</p></div><strong>по запросу</strong></div>
           </article>
 
-          <article class="product-card" data-category="bottoms">
+          <article class="product-card" data-category="bottoms" data-product="3" tabindex="0" role="button" aria-label="Открыть: Брюки">
             <div class="product-image">
               <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=85" alt="Брюки" loading="lazy">
             </div>
             <div class="product-info"><div><h3>Брюки</h3><p>На каждый день</p></div><strong>по запросу</strong></div>
           </article>
 
-          <article class="product-card" data-category="tops">
+          <article class="product-card" data-category="tops" data-product="4" tabindex="0" role="button" aria-label="Открыть: Жакет">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1564257577054-0dcb0c7b1f1d?auto=format&fit=crop&w=800&q=85" alt="Жакет" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1600713256875-4ae374d1d138?auto=format&fit=crop&fm=jpg&w=800&q=85" alt="Жакет" loading="lazy">
               <span class="product-tag">Хит</span>
             </div>
             <div class="product-info"><div><h3>Жакет</h3><p>Собирает образ</p></div><strong>по запросу</strong></div>
           </article>
 
-          <article class="product-card" data-category="dresses">
+          <article class="product-card" data-category="dresses" data-product="5" tabindex="0" role="button" aria-label="Открыть: Платье">
             <div class="product-image">
               <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=85" alt="Платье с длинным рукавом" loading="lazy">
             </div>
             <div class="product-info"><div><h3>Платье</h3><p>Для особого дня</p></div><strong>по запросу</strong></div>
           </article>
 
-          <article class="product-card" data-category="accessories">
+          <article class="product-card" data-category="accessories" data-product="6" tabindex="0" role="button" aria-label="Открыть: Сумка">
             <div class="product-image">
               <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=85" alt="Сумка" loading="lazy">
             </div>
@@ -170,11 +170,29 @@
             <span>Телефон</span>
             <a href="tel:+79140014003">+7 (914) 001-40-03</a>
           </div>
-          <a class="button button-dark" href="https://yandex.ru/maps/?text=Братск%20Кирова%2027" target="_blank" rel="noopener">Открыть на карте ↗</a>
+          <a class="button button-dark" href="https://yandex.ru/maps/?text=Братск%20Кирова%2027" target="_blank" rel="noopener noreferrer">Открыть на карте ↗</a>
         </div>
       </div>
     </section>
   </main>
+    <div class="product-modal" id="productModal" aria-hidden="true">
+      <div class="product-modal-backdrop" data-close-modal></div>
+      <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" data-close-modal aria-label="Закрыть окно">×</button>
+        <div class="modal-image"><img id="modalImage" src="" alt=""></div>
+        <div class="modal-content">
+          <p class="section-label" id="modalCategory">Коллекция</p>
+          <h2 id="modalTitle">Товар</h2>
+          <p class="modal-description" id="modalDescription"></p>
+          <div class="modal-meta">
+            <span>Наличие и цена</span>
+            <strong>уточняйте в магазине</strong>
+          </div>
+          <a class="button button-dark" href="#contacts" data-close-modal>Уточнить в магазине ↗</a>
+        </div>
+      </div>
+    </div>
+
 
   <footer class="footer">
     <div class="container footer-inner">

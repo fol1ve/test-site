@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <header class="header" id="top">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="hero-photo">
-          <img src="https://images.unsplash.com/photo-1612796016950-35a5fc6275eb?auto=format&fit=crop&w=1200&q=85" alt="Женский образ с жакетом и сумкой" loading="eager">
+          <img src="https://images.unsplash.com/photo-1612796016950-35a5fc6275eb?auto=format&fit=crop&w=800&q=72" alt="Женский образ с жакетом и сумкой" loading="eager" fetchpriority="high" decoding="async">
         </div>
       </div>
     </section>
@@ -72,9 +72,9 @@
         </div>
 
         <div class="new-products">
-          <article class="new-product-card">
+          <article class="new-product-card" data-product="7" tabindex="0" role="button" aria-label="Открыть карточку: Пальто">
             <div class="new-product-image">
-              <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1000&q=85" alt="Пальто" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=72" alt="Пальто" loading="lazy" decoding="async">
               <span class="product-tag">Новинка</span>
             </div>
             <div class="new-product-info">
@@ -87,9 +87,9 @@
             </div>
           </article>
 
-          <article class="new-product-card">
+          <article class="new-product-card" data-product="8" tabindex="0" role="button" aria-label="Открыть карточку: Мягкий трикотаж">
             <div class="new-product-image">
-              <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85" alt="Трикотажный свитер" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=72" alt="Трикотажный свитер" loading="lazy" decoding="async">
               <span class="product-tag">New</span>
             </div>
             <div class="new-product-info">
@@ -102,9 +102,9 @@
             </div>
           </article>
 
-          <article class="new-product-card">
+          <article class="new-product-card" data-product="9" tabindex="0" role="button" aria-label="Открыть карточку: Юбка миди">
             <div class="new-product-image">
-              <img src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=1000&q=85" alt="Юбка миди" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=800&q=72" alt="Юбка миди" loading="lazy" decoding="async">
             </div>
             <div class="new-product-info">
               <div>
@@ -116,9 +116,9 @@
             </div>
           </article>
 
-          <article class="new-product-card">
+          <article class="new-product-card" data-product="10" tabindex="0" role="button" aria-label="Открыть карточку: Новый силуэт">
             <div class="new-product-image">
-              <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85" alt="Новый образ" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=72" alt="Новый образ" loading="lazy" decoding="async">
               <span class="product-tag">New</span>
             </div>
             <div class="new-product-info">
@@ -160,7 +160,7 @@
         <div class="products" id="products">
           <article class="product-card" data-category="dresses" data-product="1" tabindex="0" role="button" aria-label="Открыть карточку: Платье миди">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1667218578593-1d8d433e4b33?auto=format&fit=crop&w=1200&q=85" alt="Платье миди" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1667218578593-1d8d433e4b33?auto=format&fit=crop&w=800&q=72" alt="Платье миди" loading="lazy" decoding="async">
               <span class="product-tag">Новинка</span>
             </div>
             <div class="product-info">
@@ -171,7 +171,7 @@
 
           <article class="product-card" data-category="tops" data-product="2" tabindex="0" role="button" aria-label="Открыть карточку: Рубашка">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1573651235591-221193be5229?auto=format&fit=crop&w=1200&q=85" alt="Белая рубашка" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1573651235591-221193be5229?auto=format&fit=crop&w=800&q=72" alt="Белая рубашка" loading="lazy" decoding="async">
             </div>
             <div class="product-info">
               <div><p class="product-category">Верх</p><h3>Рубашка</h3><p>Базовая вещь, которую легко вписать в гардероб.</p></div>
@@ -181,7 +181,7 @@
 
           <article class="product-card" data-category="bottoms" data-product="3" tabindex="0" role="button" aria-label="Открыть карточку: Брюки">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1200&q=85" alt="Женские брюки" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=72" alt="Женские брюки" loading="lazy" decoding="async">
             </div>
             <div class="product-info">
               <div><p class="product-category">Низ</p><h3>Брюки</h3><p>Универсальная основа для повседневных образов.</p></div>
@@ -191,7 +191,7 @@
 
           <article class="product-card" data-category="tops" data-product="4" tabindex="0" role="button" aria-label="Открыть карточку: Жакет">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=1200&q=85" alt="Жакет и женский образ" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=800&q=72" alt="Жакет и женский образ" loading="lazy" decoding="async">
               <span class="product-tag">Хит</span>
             </div>
             <div class="product-info">
@@ -202,7 +202,7 @@
 
           <article class="product-card" data-category="dresses" data-product="5" tabindex="0" role="button" aria-label="Открыть карточку: Вечернее платье">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=1200&q=85" alt="Платье для особого случая" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=72" alt="Платье для особого случая" loading="lazy" decoding="async">
             </div>
             <div class="product-info">
               <div><p class="product-category">Платья</p><h3>Вечернее платье</h3><p>Выразительный вариант для особого выхода.</p></div>
@@ -212,7 +212,7 @@
 
           <article class="product-card" data-category="accessories" data-product="6" tabindex="0" role="button" aria-label="Открыть карточку: Сумка">
             <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1560891958-68bb1fe7fb78?auto=format&fit=crop&w=1200&q=85" alt="Женская сумка" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1560891958-68bb1fe7fb78?auto=format&fit=crop&w=800&q=72" alt="Женская сумка" loading="lazy" decoding="async">
             </div>
             <div class="product-info">
               <div><p class="product-category">Аксессуары</p><h3>Сумка</h3><p>Деталь, которая завершает образ.</p></div>
@@ -232,7 +232,7 @@
           <a class="text-link" href="#contacts">Адрес и контакты <span>↗</span></a>
         </div>
         <div class="editorial-photo">
-          <img src="https://images.unsplash.com/photo-1622445275992-e7efb32d2257?auto=format&fit=crop&w=1200&q=85" alt="Женский повседневный образ" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1622445275992-e7efb32d2257?auto=format&fit=crop&w=800&q=72" alt="Женский повседневный образ" loading="lazy" decoding="async">
         </div>
       </div>
     </section>
@@ -240,7 +240,7 @@
     <section class="fitting section" id="fitting">
       <div class="container fitting-grid">
         <div class="fitting-photo">
-          <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=1200&q=85" alt="Примерка образа в магазине" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=800&q=72" alt="Примерка образа в магазине" loading="lazy" decoding="async">
         </div>
         <div class="fitting-copy">
           <p class="section-label">Примерка</p>
@@ -261,7 +261,7 @@
     <section class="about section" id="about">
       <div class="container about-grid">
         <div class="about-photo">
-          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85" alt="Интерьер магазина одежды" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=72" alt="Интерьер магазина одежды" loading="lazy" decoding="async">
         </div>
         <div class="about-copy">
           <p class="section-label">О Parée</p>

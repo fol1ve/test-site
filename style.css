@@ -14,7 +14,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 0;
+  scroll-padding-top: var(--header-h);
 }
 
 body {
@@ -220,6 +220,7 @@ img {
 
 .section {
   padding: 10vw 8vw;
+  scroll-margin-top: var(--header-h);
 }
 
 .intro {
@@ -302,6 +303,7 @@ img {
   transition:
     transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 .product-card:hover .product-image img,
@@ -674,6 +676,10 @@ img {
 
 @media (max-width: 900px) {
 
+  html {
+    scroll-padding-top: 66px;
+  }
+
   .header {
     height: 66px;
     padding: 0 5vw;
@@ -718,6 +724,7 @@ img {
 
   .section {
     padding: 18vw 7vw;
+    scroll-margin-top: 66px;
   }
 
   .intro-grid,
@@ -823,31 +830,5 @@ img {
 
   .modal-dialog {
     animation: none;
-  }
-}
-
-/* FINAL ROBUSTNESS */
-.product-card:focus-visible,
-.button:focus-visible,
-.filter:focus-visible,
-.nav a:focus-visible,
-.logo:focus-visible,
-.footer-logo:focus-visible,
-.back-top:focus-visible,
-.menu-toggle:focus-visible,
-.modal-close:focus-visible,
-.contact-links a:focus-visible,
-.text-link:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 4px;
-}
-
-.modal-close:focus-visible {
-  outline-color: #fff;
-}
-
-@media (max-width: 900px) {
-  .modal-dialog {
-    -webkit-overflow-scrolling: touch;
   }
 }

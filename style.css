@@ -825,3 +825,29 @@ img {
     animation: none;
   }
 }
+
+/* FINAL ROBUSTNESS */
+.product-card:focus-visible,
+.button:focus-visible,
+.filter:focus-visible,
+.nav a:focus-visible,
+.logo:focus-visible,
+.footer-logo:focus-visible,
+.back-top:focus-visible,
+.menu-toggle:focus-visible,
+.modal-close:focus-visible,
+.contact-links a:focus-visible,
+.text-link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.modal-close:focus-visible {
+  outline-color: #fff;
+}
+
+@media (max-width: 900px) {
+  .modal-dialog {
+    -webkit-overflow-scrolling: touch;
+  }
+}

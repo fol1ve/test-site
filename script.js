@@ -95,7 +95,7 @@ const productData = {
     description:
       "Выразительное пальто с чистым силуэтом — главный акцент нового сезона.",
     image:
-      "https://images.unsplash.com/photo-1539533018447-63fcce2678e2?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1697041556752-97e23a1b6da5?auto=format&fit=crop&w=900&q=76",
     alt: "Пальто",
     facts: [
       ["Коллекция", "New Season"],
@@ -152,182 +152,270 @@ const productData = {
 
 
 /* =========================
-   PARÉE — INTERACTIONS
+   PRODUCT MODAL
 ========================= */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("productModal");
-  const modalImage = document.getElementById("modalImage");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalCategory = document.getElementById("modalCategory");
-  const modalDescription = document.getElementById("modalDescription");
-  const modalFacts = document.getElementById("modalFacts");
+const modal = document.getElementById("productModal");
+const modalImage = document.getElementById("modalImage");
+const modalTitle = document.getElementById("modalTitle");
+const modalCategory = document.getElementById("modalCategory");
+const modalDescription = document.getElementById("modalDescription");
+const modalFacts = document.getElementById("modalFacts");
 
-  const menuToggle = document.querySelector(".menu-toggle");
-  const nav = document.getElementById("mainNav");
+let lastFocused = null;
 
-  let lastFocused = null;
 
-  function openProduct(id) {
-    const product = productData[id];
+function openProduct(id) {
+  const product = productData[id];
 
-    if (!product || !modal || !modalImage || !modalTitle || !modalCategory || !modalDescription || !modalFacts) {
-      return;
-    }
-
-    lastFocused = document.activeElement;
-
-    modalImage.src = product.image;
-    modalImage.alt = product.alt;
-    modalTitle.textContent = product.title;
-    modalCategory.textContent = product.category;
-    modalDescription.textContent = product.description;
-
-    modalFacts.innerHTML = product.facts.map(([name, value]) => `
-      <div class="modal-fact">
-        <span>${name}</span>
-        <span>${value}</span>
-      </div>
-    `).join("");
-
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-
-    requestAnimationFrame(() => modal.querySelector(".modal-close")?.focus());
+  if (!product || !modal) {
+    return;
   }
 
-  function closeProduct() {
-    if (!modal) return;
+  lastFocused = document.activeElement;
 
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
+  modalImage.src = product.image;
+  modalImage.alt = product.alt;
+  modalImage.loading = "eager";
+  modalImage.decoding = "async";
+  modalImage.loading = "eager";
+  modalImage.decoding = "async";
 
-    if (modalImage) {
-      modalImage.removeAttribute("src");
-      modalImage.alt = "";
-    }
+  modalTitle.textContent = product.title;
+  modalCategory.textContent = product.category;
+  modalDescription.textContent = product.description;
 
-    if (lastFocused && typeof lastFocused.focus === "function") {
-      lastFocused.focus();
-    }
+  modalFacts.innerHTML = product.facts
+    .map(([name, value]) => {
+      return `
+        <div class="modal-fact">
+          <span>${name}</span>
+          <span>${value}</span>
+        </div>
+      `;
+    })
+    .join("");
 
-    lastFocused = null;
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+
+  document.body.classList.add("modal-open");
+
+  requestAnimationFrame(() => {
+    modal.querySelector(".modal-close")?.focus();
+  });
+}
+
+
+function closeProduct() {
+  if (!modal) {
+    return;
   }
 
-  /* PRODUCT CARDS */
-  document.querySelectorAll(".product-card[data-product]").forEach((card) => {
-    const activate = () => openProduct(card.dataset.product);
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
 
-    card.addEventListener("click", activate);
+  document.body.classList.remove("modal-open");
 
-    card.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        activate();
-      }
-    });
-  });
+  modalImage.removeAttribute("src");
 
-  /* MODAL CLOSE */
-  document.querySelectorAll("[data-close-modal]").forEach((element) => {
-    element.addEventListener("click", closeProduct);
-  });
-
-  /* ESCAPE + MENU */
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      if (modal?.classList.contains("is-open")) closeProduct();
-      nav?.classList.remove("open");
-      menuToggle?.setAttribute("aria-expanded", "false");
-    }
-  });
-
-  /* COLLECTION FILTERS */
-  document.querySelectorAll(".filter").forEach((button) => {
-    button.addEventListener("click", () => {
-      const filter = button.dataset.filter;
-
-      document.querySelectorAll(".filter").forEach((item) => {
-        item.classList.toggle("active", item === button);
-      });
-
-      let visibleProducts = 0;
-
-      document.querySelectorAll("#catalogGrid .product-card").forEach((card) => {
-        const show = filter === "all" || card.dataset.category === filter;
-        card.classList.toggle("is-hidden", !show);
-        if (show) visibleProducts += 1;
-      });
-
-      const emptyState = document.getElementById("emptyState");
-      if (emptyState) emptyState.hidden = visibleProducts > 0;
-    });
-  });
-
-  /* MOBILE MENU */
-  if (menuToggle && nav) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-    });
+  if (lastFocused && typeof lastFocused.focus === "function") {
+    lastFocused.focus();
   }
+}
 
-  document.querySelectorAll(".nav a").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav?.classList.remove("open");
-      menuToggle?.setAttribute("aria-expanded", "false");
-    });
+
+/* =========================
+   PRODUCT CARDS
+========================= */
+
+document.querySelectorAll(".product-card").forEach((card) => {
+
+  card.addEventListener("click", () => {
+    openProduct(card.dataset.product);
   });
 
-  /* EXACT TOP — LOGO / FOOTER / BACK TO TOP */
-  document.querySelectorAll('.logo[href="#top"], .footer-logo[href="#top"], .back-top[href="#top"]').forEach((link) => {
-    link.addEventListener("click", (event) => {
+
+  card.addEventListener("keydown", (event) => {
+
+    if (event.key === "Enter" || event.key === " ") {
+
       event.preventDefault();
-      nav?.classList.remove("open");
-      menuToggle?.setAttribute("aria-expanded", "false");
+
+      openProduct(card.dataset.product);
+    }
+
+  });
+
+});
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+document.querySelectorAll("[data-close-modal]").forEach((element) => {
+
+  element.addEventListener("click", closeProduct);
+
+});
+
+
+document.addEventListener("keydown", (event) => {
+
+  if (event.key === "Escape") {
+
+    if (modal?.classList.contains("is-open")) {
+      closeProduct();
+    }
+
+    document
+      .getElementById("mainNav")
+      ?.classList.remove("open");
+
+    document
+      .querySelector(".menu-toggle")
+      ?.setAttribute("aria-expanded", "false");
+  }
+
+});
+
+
+/* =========================
+   COLLECTION FILTERS
+========================= */
+
+document.querySelectorAll(".filter").forEach((button) => {
+
+  button.addEventListener("click", () => {
+
+    const filter = button.dataset.filter;
+
+    document.querySelectorAll(".filter").forEach((item) => {
+      item.classList.toggle("active", item === button);
+    });
+
+
+    let visibleProducts = 0;
+
+
+    document
+      .querySelectorAll("#catalogGrid .product-card")
+      .forEach((card) => {
+
+        const show =
+          filter === "all" ||
+          card.dataset.category === filter;
+
+        card.classList.toggle("is-hidden", !show);
+
+        if (show) {
+          visibleProducts++;
+        }
+
+      });
+
+
+    const emptyState = document.getElementById("emptyState");
+
+    if (emptyState) {
+      emptyState.hidden = visibleProducts !== 0;
+    }
+
+  });
+
+});
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuToggle = document.querySelector(".menu-toggle");
+const nav = document.getElementById("mainNav");
+
+
+if (menuToggle && nav) {
+
+  menuToggle.addEventListener("click", () => {
+
+    const isOpen = nav.classList.toggle("open");
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
+
+  });
+
+}
+
+
+document.querySelectorAll(".nav a").forEach((link) => {
+
+  link.addEventListener("click", () => {
+
+    nav?.classList.remove("open");
+
+    menuToggle?.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+  });
+
+});
+
+
+/* =========================
+   GO TO EXACT TOP
+========================= */
+
+/*
+  Здесь специально НЕ используется обычный переход
+  по href="#top".
+
+  Это нужно для того, чтобы sticky-header не создавал
+  ощущение маленького скачка страницы.
+
+  Parée всегда отправляет страницу именно в координату 0.
+*/
+
+document
+  .querySelectorAll(
+    '.logo[href="#top"], .footer-logo[href="#top"], .back-top[href="#top"]'
+  )
+  .forEach((link) => {
+
+    link.addEventListener("click", (event) => {
+
+      event.preventDefault();
 
       window.scrollTo({
         top: 0,
-        left: 0,
         behavior: "smooth"
       });
 
-      if (history.replaceState) {
-        history.replaceState(null, "", window.location.pathname + window.location.search);
-      }
+
     });
+
   });
 
-  /* INTERNAL SECTION LINKS */
-  document.querySelectorAll('a[href^="#"]:not([href="#"]):not([href="#top"])').forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const selector = link.getAttribute("href");
-      const target = selector ? document.querySelector(selector) : null;
 
-      if (!target) return;
+/* =========================
+   INTERNAL LINKS
+========================= */
 
-      event.preventDefault();
-      nav?.classList.remove("open");
-      menuToggle?.setAttribute("aria-expanded", "false");
+/* Нативные якорные ссылки используются намеренно.
+   CSS задаёт отступ для sticky-header, поэтому обычная
+   прокрутка работает без вмешательства JavaScript. */
 
-      const headerHeight = document.querySelector(".header")?.offsetHeight || 0;
-      const targetTop = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerHeight);
+/* =========================
+   CURRENT YEAR
+========================= */
 
-      window.scrollTo({
-        top: targetTop,
-        left: 0,
-        behavior: "smooth"
-      });
+const yearElement = document.getElementById("year");
 
-      if (history.replaceState) {
-        history.replaceState(null, "", window.location.pathname + window.location.search + selector);
-      }
-    });
-  });
-
-  /* CURRENT YEAR */
-  const yearElement = document.getElementById("year");
-  if (yearElement) yearElement.textContent = new Date().getFullYear();
-});
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear();
+}

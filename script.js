@@ -1,4 +1,3 @@
-```javascript
 const productData = {
   1: {
     title: "Платье миди",
@@ -153,320 +152,182 @@ const productData = {
 
 
 /* =========================
-   PRODUCT MODAL
+   PARÉE — INTERACTIONS
 ========================= */
 
-const modal = document.getElementById("productModal");
-const modalImage = document.getElementById("modalImage");
-const modalTitle = document.getElementById("modalTitle");
-const modalCategory = document.getElementById("modalCategory");
-const modalDescription = document.getElementById("modalDescription");
-const modalFacts = document.getElementById("modalFacts");
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("productModal");
+  const modalImage = document.getElementById("modalImage");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalCategory = document.getElementById("modalCategory");
+  const modalDescription = document.getElementById("modalDescription");
+  const modalFacts = document.getElementById("modalFacts");
 
-let lastFocused = null;
+  const menuToggle = document.querySelector(".menu-toggle");
+  const nav = document.getElementById("mainNav");
 
+  let lastFocused = null;
 
-function openProduct(id) {
-  const product = productData[id];
+  function openProduct(id) {
+    const product = productData[id];
 
-  if (!product || !modal) {
-    return;
-  }
-
-  lastFocused = document.activeElement;
-
-  modalImage.src = product.image;
-  modalImage.alt = product.alt;
-
-  modalTitle.textContent = product.title;
-  modalCategory.textContent = product.category;
-  modalDescription.textContent = product.description;
-
-  modalFacts.innerHTML = product.facts
-    .map(([name, value]) => {
-      return `
-        <div class="modal-fact">
-          <span>${name}</span>
-          <span>${value}</span>
-        </div>
-      `;
-    })
-    .join("");
-
-  modal.classList.add("is-open");
-  modal.setAttribute("aria-hidden", "false");
-
-  document.body.classList.add("modal-open");
-
-  requestAnimationFrame(() => {
-    modal.querySelector(".modal-close")?.focus();
-  });
-}
-
-
-function closeProduct() {
-  if (!modal) {
-    return;
-  }
-
-  modal.classList.remove("is-open");
-  modal.setAttribute("aria-hidden", "true");
-
-  document.body.classList.remove("modal-open");
-
-  modalImage.removeAttribute("src");
-
-  if (lastFocused && typeof lastFocused.focus === "function") {
-    lastFocused.focus();
-  }
-}
-
-
-/* =========================
-   PRODUCT CARDS
-========================= */
-
-document.querySelectorAll(".product-card").forEach((card) => {
-
-  card.addEventListener("click", () => {
-    openProduct(card.dataset.product);
-  });
-
-
-  card.addEventListener("keydown", (event) => {
-
-    if (event.key === "Enter" || event.key === " ") {
-
-      event.preventDefault();
-
-      openProduct(card.dataset.product);
+    if (!product || !modal || !modalImage || !modalTitle || !modalCategory || !modalDescription || !modalFacts) {
+      return;
     }
 
-  });
+    lastFocused = document.activeElement;
 
-});
+    modalImage.src = product.image;
+    modalImage.alt = product.alt;
+    modalTitle.textContent = product.title;
+    modalCategory.textContent = product.category;
+    modalDescription.textContent = product.description;
 
+    modalFacts.innerHTML = product.facts.map(([name, value]) => `
+      <div class="modal-fact">
+        <span>${name}</span>
+        <span>${value}</span>
+      </div>
+    `).join("");
 
-/* =========================
-   CLOSE MODAL
-========================= */
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
 
-document.querySelectorAll("[data-close-modal]").forEach((element) => {
-
-  element.addEventListener("click", closeProduct);
-
-});
-
-
-document.addEventListener("keydown", (event) => {
-
-  if (event.key === "Escape") {
-
-    if (modal?.classList.contains("is-open")) {
-      closeProduct();
-    }
-
-    document
-      .getElementById("mainNav")
-      ?.classList.remove("open");
-
-    document
-      .querySelector(".menu-toggle")
-      ?.setAttribute("aria-expanded", "false");
+    requestAnimationFrame(() => modal.querySelector(".modal-close")?.focus());
   }
 
-});
+  function closeProduct() {
+    if (!modal) return;
 
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
 
-/* =========================
-   COLLECTION FILTERS
-========================= */
+    if (modalImage) {
+      modalImage.removeAttribute("src");
+      modalImage.alt = "";
+    }
 
-document.querySelectorAll(".filter").forEach((button) => {
+    if (lastFocused && typeof lastFocused.focus === "function") {
+      lastFocused.focus();
+    }
 
-  button.addEventListener("click", () => {
+    lastFocused = null;
+  }
 
-    const filter = button.dataset.filter;
+  /* PRODUCT CARDS */
+  document.querySelectorAll(".product-card[data-product]").forEach((card) => {
+    const activate = () => openProduct(card.dataset.product);
 
-    document.querySelectorAll(".filter").forEach((item) => {
-      item.classList.toggle("active", item === button);
+    card.addEventListener("click", activate);
+
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        activate();
+      }
     });
+  });
 
+  /* MODAL CLOSE */
+  document.querySelectorAll("[data-close-modal]").forEach((element) => {
+    element.addEventListener("click", closeProduct);
+  });
 
-    let visibleProducts = 0;
+  /* ESCAPE + MENU */
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      if (modal?.classList.contains("is-open")) closeProduct();
+      nav?.classList.remove("open");
+      menuToggle?.setAttribute("aria-expanded", "false");
+    }
+  });
 
+  /* COLLECTION FILTERS */
+  document.querySelectorAll(".filter").forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.filter;
 
-    document
-      .querySelectorAll("#catalogGrid .product-card")
-      .forEach((card) => {
-
-        const show =
-          filter === "all" ||
-          card.dataset.category === filter;
-
-        card.classList.toggle("is-hidden", !show);
-
-        if (show) {
-          visibleProducts++;
-        }
-
+      document.querySelectorAll(".filter").forEach((item) => {
+        item.classList.toggle("active", item === button);
       });
 
+      let visibleProducts = 0;
 
-    const emptyState = document.getElementById("emptyState");
+      document.querySelectorAll("#catalogGrid .product-card").forEach((card) => {
+        const show = filter === "all" || card.dataset.category === filter;
+        card.classList.toggle("is-hidden", !show);
+        if (show) visibleProducts += 1;
+      });
 
-    if (emptyState) {
-      emptyState.hidden = visibleProducts !== 0;
-    }
-
+      const emptyState = document.getElementById("emptyState");
+      if (emptyState) emptyState.hidden = visibleProducts > 0;
+    });
   });
 
-});
+  /* MOBILE MENU */
+  if (menuToggle && nav) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+  }
 
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-const menuToggle = document.querySelector(".menu-toggle");
-const nav = document.getElementById("mainNav");
-
-
-if (menuToggle && nav) {
-
-  menuToggle.addEventListener("click", () => {
-
-    const isOpen = nav.classList.toggle("open");
-
-    menuToggle.setAttribute(
-      "aria-expanded",
-      String(isOpen)
-    );
-
+  document.querySelectorAll(".nav a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav?.classList.remove("open");
+      menuToggle?.setAttribute("aria-expanded", "false");
+    });
   });
 
-}
-
-
-document.querySelectorAll(".nav a").forEach((link) => {
-
-  link.addEventListener("click", () => {
-
-    nav?.classList.remove("open");
-
-    menuToggle?.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
-  });
-
-});
-
-
-/* =========================
-   GO TO EXACT TOP
-========================= */
-
-/*
-  Здесь специально НЕ используется обычный переход
-  по href="#top".
-
-  Это нужно для того, чтобы sticky-header не создавал
-  ощущение маленького скачка страницы.
-
-  Parée всегда отправляет страницу именно в координату 0.
-*/
-
-document
-  .querySelectorAll(
-    '.logo[href="#top"], .footer-logo[href="#top"], .back-top[href="#top"]'
-  )
-  .forEach((link) => {
-
+  /* EXACT TOP — LOGO / FOOTER / BACK TO TOP */
+  document.querySelectorAll('.logo[href="#top"], .footer-logo[href="#top"], .back-top[href="#top"]').forEach((link) => {
     link.addEventListener("click", (event) => {
-
       event.preventDefault();
+      nav?.classList.remove("open");
+      menuToggle?.setAttribute("aria-expanded", "false");
 
       window.scrollTo({
         top: 0,
+        left: 0,
         behavior: "smooth"
       });
 
       if (history.replaceState) {
-        history.replaceState(
-          null,
-          "",
-          window.location.pathname
-        );
+        history.replaceState(null, "", window.location.pathname + window.location.search);
       }
-
     });
-
   });
 
-
-/* =========================
-   INTERNAL LINKS
-========================= */
-
-document
-  .querySelectorAll('a[href^="#"]:not([href="#top"])')
-  .forEach((link) => {
-
+  /* INTERNAL SECTION LINKS */
+  document.querySelectorAll('a[href^="#"]:not([href="#"]):not([href="#top"])').forEach((link) => {
     link.addEventListener("click", (event) => {
-
       const selector = link.getAttribute("href");
+      const target = selector ? document.querySelector(selector) : null;
 
-      if (!selector || selector === "#") {
-        return;
-      }
-
-      const target = document.querySelector(selector);
-
-      if (!target) {
-        return;
-      }
+      if (!target) return;
 
       event.preventDefault();
+      nav?.classList.remove("open");
+      menuToggle?.setAttribute("aria-expanded", "false");
 
-      const headerHeight =
-        document.querySelector(".header")?.offsetHeight || 0;
-
-      const targetTop =
-        target.getBoundingClientRect().top +
-        window.scrollY -
-        headerHeight;
-
+      const headerHeight = document.querySelector(".header")?.offsetHeight || 0;
+      const targetTop = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerHeight);
 
       window.scrollTo({
         top: targetTop,
+        left: 0,
         behavior: "smooth"
       });
 
-
       if (history.replaceState) {
-
-        history.replaceState(
-          null,
-          "",
-          selector
-        );
-
+        history.replaceState(null, "", window.location.pathname + window.location.search + selector);
       }
-
     });
-
   });
 
-
-/* =========================
-   CURRENT YEAR
-========================= */
-
-const yearElement = document.getElementById("year");
-
-if (yearElement) {
-  yearElement.textContent = new Date().getFullYear();
-}
-```
+  /* CURRENT YEAR */
+  const yearElement = document.getElementById("year");
+  if (yearElement) yearElement.textContent = new Date().getFullYear();
+});
